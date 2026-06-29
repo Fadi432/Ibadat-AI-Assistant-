@@ -152,7 +152,7 @@ institution, or just want to talk about RAG and n8n —
 feel free to reach out.
 
 [![GitHub](https://img.shields.io/badge/GitHub-Fadi432-181717?style=flat-square&logo=github)](https://github.com/Fadi432)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](www.linkedin.com/in/fawad-amin-07414337b)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/fawad-amin-07414337b/)
 
 ---
 
