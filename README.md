@@ -1,10 +1,6 @@
 # Ibadat AI Assistant
 
-![n8n](https://img.shields.io/badge/Built%20with-n8n-EF6C00?style=flat-square&logo=n8n&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-pgvector-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
-![HuggingFace](https://img.shields.io/badge/Embeddings-MiniLM--L6--v2-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
-![OpenRouter](https://img.shields.io/badge/LLM-GPT--4o--mini-412991?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-red?style=flat-square)
+
 
 An AI chatbot for Ibadat International University built on
 Agentic RAG — students ask about fees, admissions, hostel,
