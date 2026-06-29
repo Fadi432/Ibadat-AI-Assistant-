@@ -160,3 +160,12 @@ feel free to reach out.
 
 Open source under the **MIT License**
 use it, fork it, adapt it for your own institution.
+
+
+---
+## How to Setup
+
+Full walkthrough → [setup_guide.md](setup_guide.md)
+
+
+
