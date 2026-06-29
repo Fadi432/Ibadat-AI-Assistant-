@@ -1,0 +1,182 @@
+{
+    "name": "University Markdown Ingestion Pipeline",
+    "nodes": [
+        {
+            "parameters": {
+                "dataType": "binary",
+                "options": {}
+            },
+            "id": "ddef7609-242f-49c2-994f-834fe10d25de",
+            "name": "Default Data Loader",
+            "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+            "typeVersion": 1,
+            "position": [
+                3904,
+                752
+            ]
+        },
+        {
+            "parameters": {
+                "mode": "insert",
+                "tableName": "university_knowledge",
+                "options": {}
+            },
+            "id": "3661d9c6-8ebc-40d1-bd28-b3f7880f65dc",
+            "name": "Supabase Vector Store",
+            "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+            "typeVersion": 1,
+            "position": [
+                3968,
+                544
+            ],
+            "credentials": {
+                "supabaseApi": {
+                    "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+                    "name": "ai-semester"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "modelName": "sentence-transformers/all-MiniLM-L6-v2",
+                "options": {}
+            },
+            "id": "0c8a7f8b-058a-4cdd-9ac5-9dcddbe1053b",
+            "name": "Hugging Face Embeddings",
+            "type": "@n8n/n8n-nodes-langchain.embeddingsHuggingFaceInference",
+            "typeVersion": 1,
+            "position": [
+                4144,
+                752
+            ],
+            "credentials": {
+                "huggingFaceApi": {
+                    "id": "YOUR_HUGGINGFACE_CREDENTIAL_ID",
+                    "name": "HuggingFaceApi account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "chunkOverlap": 150,
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+            "typeVersion": 1,
+            "position": [
+                3840,
+                960
+            ],
+            "id": "c0db9f39-d374-4f2e-a5b6-4a18b266d1fb",
+            "name": "Recursive Character Text Splitter"
+        },
+        {
+            "parameters": {},
+            "id": "f11fd90a-e30a-461c-bb54-621f91a287ed",
+            "name": "Manual Trigger",
+            "type": "n8n-nodes-base.manualTrigger",
+            "typeVersion": 1,
+            "position": [
+                3456,
+                544
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "download",
+                "fileId": {
+                    "__rl": true,
+                    "value": "YOUR_GOOGLE_DRIVE_FILE_ID",
+                    "mode": "list",
+                    "cachedResultName": "uni-sem-project.md",
+                    "cachedResultUrl": "https://drive.google.com/file/d/1Ol2vKNhM7o0c_k77yBUJd7KCnuc6Vmq_/view?usp=drivesdk"
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.googleDrive",
+            "typeVersion": 3,
+            "position": [
+                3664,
+                544
+            ],
+            "id": "b63b9e83-7813-4973-937a-73fae69a6761",
+            "name": "Download file",
+            "credentials": {
+                "googleDriveOAuth2Api": {
+                    "id": "YOUR_GOOGLEDRIVE_CREDENTIAL_ID",
+                    "name": "Google Drive account 5"
+                }
+            }
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Default Data Loader": {
+            "ai_document": [
+                [
+                    {
+                        "node": "Supabase Vector Store",
+                        "type": "ai_document",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Recursive Character Text Splitter": {
+            "ai_textSplitter": [
+                [
+                    {
+                        "node": "Default Data Loader",
+                        "type": "ai_textSplitter",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Hugging Face Embeddings": {
+            "ai_embedding": [
+                [
+                    {
+                        "node": "Supabase Vector Store",
+                        "type": "ai_embedding",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Manual Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Download file",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Download file": {
+            "main": [
+                [
+                    {
+                        "node": "Supabase Vector Store",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "availableInMCP": false
+    },
+    "versionId": "60c1d8c8-2355-490b-ba41-a6adca1b00e1",
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "YOUR_INSTANCE_ID"
+    },
+    "id": "L9PivMhMIDX4z5e6NOcrf",
+    "tags": []
+}
